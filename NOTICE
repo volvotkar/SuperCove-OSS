@@ -1,0 +1,38 @@
+SuperCove
+Copyright (C) 2026 Priyanshu Volvotkar
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version. See the LICENSE file for the full text.
+
+
+NAME AND BRANDING
+-----------------
+
+The AGPL-3.0 covers the source code. It does not grant rights to the project's
+name or branding, which are reserved:
+
+  - the name "SuperCove"
+  - the SuperCove logo and icons (public/favicon.svg, public/icons/*)
+  - the name "LemonByte" and any associated marks
+
+You are free to fork, modify, run and redistribute this software under the
+AGPL. If you distribute a modified version publicly, please give it your own
+name and your own icon, so that users can tell your version from this one, and
+so that bug reports reach whoever can actually fix them.
+
+Referring to the origin factually — "based on SuperCove", "a fork of
+SuperCove" — is fine and welcome.
+
+
+THIRD-PARTY COMPONENTS
+----------------------
+
+This project depends on open source software distributed under its own terms,
+including React (MIT), Vite (MIT), Tailwind CSS (MIT), TanStack Query (MIT),
+Supabase JS (MIT), Recharts (MIT), CodeMirror (MIT), Lucide (ISC) and
+marked (MIT). Fonts: Bricolage Grotesque, Geist and IBM Plex Mono, each under
+the SIL Open Font License 1.1.
+
+See package.json and the respective packages for full licence texts.

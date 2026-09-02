@@ -1,0 +1,38 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+
+# Environment — never commit real credentials.
+# .env.example is the only env file that belongs in git.
+.env
+.env.*
+!.env.example
+!.env.local.example
+*.local
+
+# Supabase CLI machine-local state (project refs, pooler URLs, schema dumps).
+# These identify YOUR hosted project — keep them out of the repo.
+supabase/.temp/
+supabase/.branches/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.sw?
+
+# Deploy tooling
+.vercel
+.netlify

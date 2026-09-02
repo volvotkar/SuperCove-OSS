@@ -1,0 +1,311 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';
+
+/*
+  Design tokens.
+  Two app themes: light + dark (user-selectable, defaults to system).
+  The cove palette: paper + ink neutrals, sunrise-at-the-cove accents —
+  the accent (--tide) is Headspace-style orange in light mode and cove blue
+  in dark mode (user's call). Finance semantics: green in, red out, amber awaited.
+  (The light/dark/book switcher is scoped to the notes editor only —
+  those tokens live with the notes module, not here.)
+*/
+
+:root {
+  /* Native controls (date pickers, select popups, scrollbars) follow the theme */
+  color-scheme: light;
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --surface-sunken: #f3f3ee;
+  --ink: #1c2130;
+  --ink-muted: #6b7183;
+  --ink-faint: #9aa0b0;
+  --border: #e8e7e0;
+  --border-strong: #d8d7cf;
+  --tide: #e8590c;
+  --tide-ink: #ffffff;
+  --tide-soft: #ffefe2;
+  --sunrise: #3b67e9;
+  --sunrise-soft: #ecf1fe;
+  --pos: #1ea672;
+  --pos-soft: #e7f6f0;
+  --neg: #e5484d;
+  --neg-soft: #fdeced;
+  --awaited: #b98a0e;
+  --awaited-soft: #fdf6e3;
+  /* Matrix chart palette — CVD-validated against #ffffff (do not eyeball-edit) */
+  --mx-do-now: #e5484d;
+  --mx-schedule: #3b67e9;
+  --mx-delegate: #b98a0e;
+  --mx-skip: #8a63d2;
+  --mx-none: #9aa0b0;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0e1424;
+  --surface: #151c30;
+  --surface-sunken: #0b101e;
+  --ink: #eef0f6;
+  --ink-muted: #9aa3b8;
+  --ink-faint: #667089;
+  --border: #232b44;
+  --border-strong: #303a58;
+  --tide: #7395ff;
+  --tide-ink: #0e1424;
+  --tide-soft: #1a2340;
+  --sunrise: #ffa05e;
+  --sunrise-soft: #2a2030;
+  --pos: #34c68f;
+  --pos-soft: #14293a;
+  --neg: #ff6b70;
+  --neg-soft: #331d2c;
+  --awaited: #e6bf4e;
+  --awaited-soft: #2c2718;
+  /* Matrix chart palette — CVD-validated against #151c30 (do not eyeball-edit) */
+  --mx-do-now: #ef5350;
+  --mx-schedule: #5d7ff2;
+  --mx-delegate: #ab820e;
+  --mx-skip: #8a6fd8;
+  --mx-none: #667089;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunken: var(--surface-sunken);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-tide: var(--tide);
+  --color-tide-ink: var(--tide-ink);
+  --color-tide-soft: var(--tide-soft);
+  --color-sunrise: var(--sunrise);
+  --color-sunrise-soft: var(--sunrise-soft);
+  --color-pos: var(--pos);
+  --color-pos-soft: var(--pos-soft);
+  --color-neg: var(--neg);
+  --color-neg-soft: var(--neg-soft);
+  --color-awaited: var(--awaited);
+  --color-awaited-soft: var(--awaited-soft);
+
+  /* Type system: Bricolage (display, warmth) · Geist (UI, clarity) · IBM Plex Mono (money/data).
+     System stacks are fallback only. */
+  --font-sans: 'Geist Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Geist Variable', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --radius-card: 12px;
+  --radius-field: 9px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display face for page titles and greetings */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Scroll without the chrome — used by the habit grid on narrow screens */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tabular numerals in the sans face — digits align in columns without the
+   typewriter look. Mono is reserved for genuine code (the notes editor) only. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------------
+   Rendered markdown (notes preview + hybrid editor).
+
+   Tailwind's Preflight zeroes heading sizes and strips list markers, so without
+   this block `marked` output renders as flat body text — that was the whole
+   "markdown is broken" bug, not the parser.
+
+   Everything here inherits `currentColor` on purpose: the notes editor applies
+   its light/dark/book mini-theme as an inline `style` on the container, so
+   token colours (--ink etc.) would fight the parchment background.
+   --------------------------------------------------------------------------- */
+.prose-sc {
+  color: inherit;
+}
+.prose-sc > *:first-child {
+  margin-top: 0;
+}
+.prose-sc > *:last-child {
+  margin-bottom: 0;
+}
+
+.prose-sc h1,
+.prose-sc h2,
+.prose-sc h3,
+.prose-sc h4,
+.prose-sc h5,
+.prose-sc h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 1.4em 0 0.5em;
+}
+.prose-sc h1 {
+  font-size: 1.7em;
+}
+.prose-sc h2 {
+  font-size: 1.4em;
+}
+.prose-sc h3 {
+  font-size: 1.2em;
+}
+.prose-sc h4 {
+  font-size: 1.05em;
+}
+.prose-sc h5,
+.prose-sc h6 {
+  font-size: 1em;
+  color: color-mix(in srgb, currentColor 70%, transparent);
+}
+
+.prose-sc p {
+  margin: 0.75em 0;
+}
+
+.prose-sc ul,
+.prose-sc ol {
+  margin: 0.75em 0;
+  padding-left: 1.5em;
+}
+.prose-sc ul {
+  list-style: disc;
+}
+.prose-sc ul ul {
+  list-style: circle;
+}
+.prose-sc ol {
+  list-style: decimal;
+}
+.prose-sc li {
+  margin: 0.25em 0;
+}
+.prose-sc li::marker {
+  color: color-mix(in srgb, currentColor 55%, transparent);
+}
+/* GFM task lists — the checkbox shouldn't sit on a bullet too */
+.prose-sc li:has(> input[type='checkbox']) {
+  list-style: none;
+  margin-left: -1.15em;
+}
+.prose-sc li > input[type='checkbox'] {
+  margin-right: 0.5em;
+  accent-color: var(--tide);
+}
+
+.prose-sc blockquote {
+  margin: 1em 0;
+  padding: 0.1em 0 0.1em 1em;
+  border-left: 3px solid color-mix(in srgb, currentColor 30%, transparent);
+  color: color-mix(in srgb, currentColor 75%, transparent);
+  font-style: italic;
+}
+
+/* The one sanctioned mono surface in the app: genuine code. */
+.prose-sc code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: color-mix(in srgb, currentColor 9%, transparent);
+  padding: 0.15em 0.38em;
+  border-radius: 5px;
+}
+.prose-sc pre {
+  margin: 1em 0;
+  padding: 0.85em 1em;
+  border-radius: var(--radius-field);
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  overflow-x: auto;
+}
+.prose-sc pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.86em;
+}
+
+.prose-sc a {
+  color: var(--tide);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose-sc hr {
+  margin: 1.6em 0;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.prose-sc table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95em;
+  display: block;
+  overflow-x: auto;
+}
+.prose-sc th,
+.prose-sc td {
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  padding: 0.45em 0.7em;
+  text-align: left;
+}
+.prose-sc th {
+  font-weight: 600;
+  background: color-mix(in srgb, currentColor 7%, transparent);
+}
+
+.prose-sc img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-field);
+}
+
+.prose-sc strong {
+  font-weight: 650;
+}
+
+:focus-visible {
+  outline: 2px solid var(--tide);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

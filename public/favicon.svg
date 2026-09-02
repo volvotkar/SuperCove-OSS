@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#10162A"/>
+  <!-- cove: sun over a wave -->
+  <circle cx="41" cy="24" r="9" fill="#FF8A3D"/>
+  <path d="M8 40c6-6 12-6 18 0s12 6 18 0 10-5 12-3v19H8V40z" fill="#3B67E9"/>
+  <path d="M8 46c6-6 12-6 18 0s12 6 18 0 10-5 12-3v13H8V46z" fill="#7395FF" opacity=".85"/>
+</svg>
