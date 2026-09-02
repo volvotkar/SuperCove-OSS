@@ -8,8 +8,8 @@ SuperCove is opinionated, and a few things are settled rather than open:
 
 - **Single-user per install.** Not a team tool. Multi-user, sharing and
   permissions are out of scope.
-- **No AI features in the app.** It never calls a language model at runtime.
-  This isn't up for debate — it's the point.
+- **No global AI features in the app.** It never calls a language model at runtime.
+  This isn't up for debate. If you do wish to incorporate AI features, please fork this repository and edit in your features.
 - **Features stay optional.** New modules go in the registry with a toggle, so
   people who don't want them pay nothing for them.
 - **Schema changes are additive.** People run this on real data.
