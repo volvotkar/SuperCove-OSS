@@ -70,7 +70,7 @@ repo is worth it once you're past trying it out.
 ## Keeping your fork updated
 
 ```bash
-git remote add upstream https://github.com/volvotkar/supercove.git
+git remote add upstream https://github.com/volvotkar/SuperCove-OSS.git
 git fetch upstream
 git merge upstream/main
 ```

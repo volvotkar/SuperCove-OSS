@@ -12,8 +12,8 @@ Docker Desktop.
 ## 1. Get the code
 
 ```bash
-git clone https://github.com/volvotkar/supercove.git
-cd supercove
+git clone https://github.com/volvotkar/SuperCove-OSS.git
+cd SuperCove-OSS
 npm install
 ```
 

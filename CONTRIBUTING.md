@@ -22,8 +22,8 @@ gets declined.
 ## Getting set up
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/supercove.git
-cd supercove
+git clone https://github.com/YOUR_USERNAME/SuperCove-OSS.git
+cd SuperCove-OSS
 npm install
 cp .env.local.example .env.local
 npx supabase start

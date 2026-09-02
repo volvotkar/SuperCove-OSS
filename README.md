@@ -68,8 +68,8 @@ Using AI to *modify the code* is very much encouraged. That's
 You need Node 20+ and a free [Supabase](https://supabase.com) account.
 
 ```bash
-git clone https://github.com/volvotkar/supercove.git
-cd supercove
+git clone https://github.com/volvotkar/SuperCove-OSS.git
+cd SuperCove-OSS
 npm install
 cp .env.example .env.local     # then fill in your Supabase URL and anon key
 ```

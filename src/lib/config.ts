@@ -71,5 +71,5 @@ export const PUSH_ENABLED = VAPID_PUBLIC_KEY !== ''
 /** Links shown in the sign-in footer and Settings. Blank = hidden. */
 export const PROJECT_URL = str(
   env.VITE_PROJECT_URL,
-  'https://github.com/volvotkar/supercove',
+  'https://github.com/volvotkar/SuperCove-OSS',
 )
