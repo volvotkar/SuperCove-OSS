@@ -56,9 +56,11 @@ queried.
 
 ## No AI inside
 
-Deliberate and permanent. SuperCove never calls a language model at runtime.
-It's a tool for running your life, not a wrapper around someone's API — and
-nothing you write in it gets sent anywhere for inference.
+SuperCove never calls a language model at runtime.
+Nothing you write in it gets sent anywhere for inference or tracking.
+
+SuperCove doesn't ship with any AI features, and if this does change, it will be an optional add-on and NOT global, and won't be enabled by default.
+If you do wish to incorporate AI features on top of the knowledge based created on SuperCove, please do it in a forked repository (this is an open challenge for contributors btw!). 
 
 Using AI to *modify the code* is very much encouraged. That's
 [a whole guide](docs/customizing-with-ai.md).
@@ -100,24 +102,24 @@ have to justify. See [docs/customizing-with-ai.md](docs/customizing-with-ai.md).
 Yes please — issues, bug reports and pull requests are all welcome. See
 [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Bear in mind it's opinionated: single-user, no AI features, and features stay
-optional rather than mandatory. A change that makes it a team product is
+Bear in mind it's opinionated: single-user, no global AI features, and features stay
+optional rather than mandatory. A change that makes it a team/AI product is
 probably a fork rather than a PR, and that's a fine thing to do.
 
 ## Licence
 
 [AGPL-3.0](LICENSE). Use it, change it, run it, share it. If you run a modified
 version as a service for other people, you have to publish your changes under
-the same licence.
+the same license.
 
 That's the whole point: this stays a thing people can own, and improvements come
-back to everyone. It's not a soft copyleft — if that doesn't work for you,
+back to everyone. It's not a soft copyleft. And if that doesn't work for you,
 don't use it.
 
-**The name is not covered by the licence.** "SuperCove" and its logo are not
-included; forks must use their own name and branding. See [NOTICE](NOTICE).
+**The name is not covered by the licence.** "SuperCove", "LemonByte" and its logo are not
+included and are property of the developer and LEMONBYTE LLP; forks must use their own name and branding. See [NOTICE](NOTICE).
 
 ## Credits
 
-Built by [Priyanshu Volvotkar](https://github.com/volvotkar) at
-[LemonByte](https://lemonbyte.in), because the spreadsheet stopped scaling.
+Built by [Priyanshu Volvotkar](https://github.com/volvotkar) (and Claude!) at
+[LemonByte](https://lemonbyte.in), because the spreadsheet stopped scaling ;)
